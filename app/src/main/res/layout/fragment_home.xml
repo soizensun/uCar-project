@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="-66dp"
         tools:layout_editor_absoluteY="0dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -28,6 +31,7 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -35,20 +39,21 @@
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. 080917A"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/plotIDTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
@@ -58,31 +63,45 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/plotOwnerRadioGroup"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="17dp"
                         android:orientation="horizontal">
-                        <CheckBox android:id="@+id/growCheckbox"
+
+                        <RadioButton
+                            android:id="@+id/plotOwner1RB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:textSize="15dp"
-                            android:text="บริษัท"/>
-                        <CheckBox android:id="@+id/grow2Checkbox"
+                            android:text="บริษัท"
+                            android:textSize="15dp" />
+
+                        <RadioButton
+                            android:id="@+id/plotOwner2RB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:textSize="15dp"
-                            android:text="เกษตรกร"/>
-                    </LinearLayout>
+                            android:text="เกษตรกร"
+                            android:textSize="15dp" />
+                    </RadioGroup>
+                </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -92,27 +111,28 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. หนองกระพ้อ 16"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/plotNameTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -122,6 +142,7 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -134,14 +155,15 @@
                     <Spinner
                         android:id="@+id/cloneSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp">
-                    </Spinner>
+                        android:layout_height="52dp"></Spinner>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="67dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
@@ -151,25 +173,37 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
                     android:layout_marginTop="17dp"
+                    android:layout_marginRight="16dp"
                     android:orientation="horizontal">
-                    <CheckBox android:id="@+id/treeTypeCheckbox"
+
+                    <RadioGroup
+                        android:id="@+id/treeTypeRadioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="15dp"
-                        android:text="ไม้ปลูก"/>
-                    <CheckBox android:id="@+id/treeType2Checkbox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:textSize="15dp"
-                        android:text="ไม้หน่อ"/>
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/treeType1RB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="ไม้ปลูก"
+                            android:textSize="15dp" />
+
+                        <RadioButton
+                            android:id="@+id/treeType2RB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:text="ไม้หน่อ"
+                            android:textSize="15dp" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
@@ -177,6 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -186,6 +221,7 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -198,7 +234,6 @@
                         android:layout_width="54dp"
                         android:layout_height="64dp"
                         android:layout_marginRight="6dp"
-                        android:hint="5"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -206,9 +241,9 @@
                             android:id="@+id/plotYearTextInput"
                             android:layout_width="match_parent"
                             android:layout_height="52dp"
-                            android:inputType="number">
-                        </com.google.android.material.textfield.TextInputEditText>
+                            android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -224,7 +259,6 @@
                         android:layout_height="64dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="6dp"
-                        android:hint="3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -232,9 +266,9 @@
                             android:id="@+id/plotMonthTextInput"
                             android:layout_width="match_parent"
                             android:layout_height="52dp"
-                            android:inputType="number">
-                        </com.google.android.material.textfield.TextInputEditText>
+                            android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
                     </com.google.android.material.textfield.TextInputLayout>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -245,10 +279,12 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -258,6 +294,7 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -270,14 +307,15 @@
                     <Spinner
                         android:id="@+id/spacingSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp">
-                    </Spinner>
+                        android:layout_height="52dp"></Spinner>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -287,13 +325,13 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. 13.7741"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -301,14 +339,15 @@
                         android:id="@+id/latitudeTextInput"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:inputType="number">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:inputType="numberDecimal|numberSigned"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
@@ -318,13 +357,13 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. 101.481"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -332,14 +371,15 @@
                         android:id="@+id/longitudeTextInput"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:inputType="number">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:inputType="numberDecimal|numberSigned"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -349,13 +389,13 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. 79"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -363,14 +403,15 @@
                         android:id="@+id/surviveRateTextInput"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:inputType="number">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:inputType="numberDecimal|numberSigned"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
@@ -380,13 +421,13 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="64dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:hint="ต.ย. 12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -394,14 +435,15 @@
                         android:id="@+id/sampleTreeTextInput"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
-                        android:inputType="number">
-                    </com.google.android.material.textfield.TextInputEditText>
+                        android:inputType="number"></com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
@@ -411,55 +453,80 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
+
+                    <RadioGroup
+                        android:id="@+id/soilQuality1RadioGroup"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_marginTop="17dp"
-                        android:orientation="horizontal">
-                        <CheckBox android:id="@+id/soilQualityCheckbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="15dp"
-                            android:text="ดี"/>
-                        <CheckBox android:id="@+id/soilQuality2Checkbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:textSize="15dp"
-                            android:text="ปานกลาง"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:orientation="horizontal">
-                        <CheckBox android:id="@+id/soilQuality3Checkbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="15dp"
-                            android:text="เลว"/>
-                        <CheckBox android:id="@+id/soilQuality4Checkbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:textSize="15dp"
-                            android:text="ไม่ระบุ"/>
-                    </LinearLayout>
+                        android:orientation="vertical">
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="16dp"-->
+<!--                            android:layout_marginTop="17dp"-->
+<!--                            android:layout_marginRight="16dp"-->
+<!--                            android:orientation="horizontal">-->
+
+                            <RadioButton
+                                android:id="@+id/soilQuality1RB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="ดี"
+                                android:textSize="15dp" />
+
+                            <RadioButton
+                                android:id="@+id/soilQuality2RB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="ปานกลาง"
+                                android:textSize="15dp" />
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginLeft="16dp"-->
+<!--                            android:layout_marginRight="16dp"-->
+<!--                            android:orientation="horizontal">-->
+
+                            <RadioButton
+                                android:id="@+id/soilQuality3RB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="เลว"
+                                android:textSize="15dp" />
+
+                            <RadioButton
+                                android:id="@+id/soilQuality4RB"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="ไม่ระบุ"
+                                android:textSize="15dp" />
+<!--                        </LinearLayout>-->
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
@@ -469,57 +536,73 @@
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_width="match_parent"
+
+                    <RadioGroup
+                        android:id="@+id/sawdustTypeRadioGroup"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_marginTop="17dp"
-                        android:orientation="horizontal">
-                        <CheckBox android:id="@+id/sawdustTypeCheckbox"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:textSize="15dp"
-                            android:text="เลื่อยยนตร์"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
-                        android:orientation="horizontal">
-                        <CheckBox android:id="@+id/sawdustType3Checkbox"
+                        android:orientation="vertical">
+
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginLeft="16dp"-->
+                        <!--                            android:layout_marginTop="17dp"-->
+                        <!--                            android:layout_marginRight="16dp"-->
+                        <!--                            android:orientation="horizontal">-->
+
+                        <RadioButton
+                            android:id="@+id/sawdustType1RB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:textSize="15dp"
-                            android:text="เลื่อยมือ"/>
-                    </LinearLayout>
+                            android:text="เลื่อยยนตร์"
+                            android:textSize="15dp" />
+                        <!--                        </LinearLayout>-->
+
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:layout_marginLeft="16dp"-->
+                        <!--                            android:layout_marginRight="16dp"-->
+                        <!--                            android:orientation="horizontal">-->
+
+                        <RadioButton
+                            android:id="@+id/sawdustType2RB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="เลื่อยมือ"
+                            android:textSize="15dp" />
+                        <!--                        </LinearLayout>-->
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/createDataBTN"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:text="สร้างแปลง"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp" />
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 

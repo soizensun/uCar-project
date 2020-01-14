@@ -1,4 +1,4 @@
-package com.example.ucar
+package com.example.ucar.model
 
 class Plot {
     var id : Int? = null
@@ -6,9 +6,9 @@ class Plot {
     var plotName : String? = null
     var ageYear : Int? = null
     var ageMonth : Int? = null
-    var latitude : Int? = null
-    var longitude : Int? = null
-    var serviveRate : Int? = null
+    var latitude : Float? = null
+    var longitude : Float? = null
+    var serviveRate : Float? = null
     var sampleTree : Int? = null
 
     constructor(
@@ -16,9 +16,9 @@ class Plot {
         plotName: String?,
         ageYear: Int?,
         ageMonth: Int?,
-        latitude: Int?,
-        longitude: Int?,
-        serviveRate: Int?,
+        latitude: Float?,
+        longitude: Float?,
+        serviveRate: Float?,
         sampleTree: Int?
     ) {
         this.plotID = plotID
