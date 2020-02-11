@@ -460,22 +460,13 @@
                     android:orientation="vertical">
 
                     <RadioGroup
-                        android:id="@+id/soilQuality1RadioGroup"
+                        android:id="@+id/soilQualityRadioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="17dp"
                         android:layout_marginRight="16dp"
                         android:orientation="vertical">
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="16dp"-->
-<!--                            android:layout_marginTop="17dp"-->
-<!--                            android:layout_marginRight="16dp"-->
-<!--                            android:orientation="horizontal">-->
-
                             <RadioButton
                                 android:id="@+id/soilQuality1RB"
                                 android:layout_width="wrap_content"
@@ -483,7 +474,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:text="ดี"
                                 android:textSize="15dp" />
-
                             <RadioButton
                                 android:id="@+id/soilQuality2RB"
                                 android:layout_width="wrap_content"
@@ -491,17 +481,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:text="ปานกลาง"
                                 android:textSize="15dp" />
-
-
-<!--                        </LinearLayout>-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginLeft="16dp"-->
-<!--                            android:layout_marginRight="16dp"-->
-<!--                            android:orientation="horizontal">-->
-
                             <RadioButton
                                 android:id="@+id/soilQuality3RB"
                                 android:layout_width="wrap_content"
@@ -509,7 +488,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:text="เลว"
                                 android:textSize="15dp" />
-
                             <RadioButton
                                 android:id="@+id/soilQuality4RB"
                                 android:layout_width="wrap_content"
@@ -517,7 +495,6 @@
                                 android:layout_marginLeft="10dp"
                                 android:text="ไม่ระบุ"
                                 android:textSize="15dp" />
-<!--                        </LinearLayout>-->
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
@@ -532,7 +509,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="18dp"
-                    android:text="ประเภทของขี้เลื่อย"
+                    android:text="ประเภทของเลื่อย"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -550,15 +527,6 @@
                         android:layout_marginTop="17dp"
                         android:layout_marginRight="16dp"
                         android:orientation="vertical">
-
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="16dp"-->
-                        <!--                            android:layout_marginTop="17dp"-->
-                        <!--                            android:layout_marginRight="16dp"-->
-                        <!--                            android:orientation="horizontal">-->
-
                         <RadioButton
                             android:id="@+id/sawdustType1RB"
                             android:layout_width="wrap_content"
@@ -566,15 +534,6 @@
                             android:layout_marginLeft="10dp"
                             android:text="เลื่อยยนตร์"
                             android:textSize="15dp" />
-                        <!--                        </LinearLayout>-->
-
-                        <!--                        <LinearLayout-->
-                        <!--                            android:layout_width="match_parent"-->
-                        <!--                            android:layout_height="wrap_content"-->
-                        <!--                            android:layout_marginLeft="16dp"-->
-                        <!--                            android:layout_marginRight="16dp"-->
-                        <!--                            android:orientation="horizontal">-->
-
                         <RadioButton
                             android:id="@+id/sawdustType2RB"
                             android:layout_width="wrap_content"
@@ -582,26 +541,34 @@
                             android:layout_marginLeft="10dp"
                             android:text="เลื่อยมือ"
                             android:textSize="15dp" />
+                        <RadioButton
+                            android:id="@+id/sawdustType3RB"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="ไม่ระบุ"
+                            android:textSize="15dp" />
                         <!--                        </LinearLayout>-->
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/createDataBTN"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
+                    android:textColor="@color/white"
+                    android:background="#a8513b"
                     android:text="สร้างแปลง"
-                    android:textSize="18dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
+        android:id="@+id/scrollViewATreeActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="-66dp"
@@ -14,8 +16,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:id="@+id/countTV"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="30dp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="12dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,7 +67,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/DBHTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -77,7 +101,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/GrithTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -109,7 +135,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/treeHeightTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -141,7 +169,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/activeTreeHeightTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -173,7 +203,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/sawdustTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -222,7 +254,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/hardNorthTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <LinearLayout
@@ -253,7 +287,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/hardSouthTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <LinearLayout
@@ -285,7 +321,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/hardEastTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <LinearLayout
@@ -298,7 +336,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="17dp"
-                    android:text="ทางทิศตะวันออก"
+                    android:text="ทางทิศตะวันตก"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -317,7 +355,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/hardWestTextInput"
                         android:layout_width="match_parent"
-                        android:layout_height="52dp"></com.google.android.material.textfield.TextInputEditText>
+                        android:layout_height="52dp"
+                        android:inputType="numberDecimal|numberSigned">
+                    </com.google.android.material.textfield.TextInputEditText>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -344,25 +384,29 @@
                 android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="35dp"
+                    android:baselineAligned="false">
 
                     <Button
                         android:id="@+id/confirmDataBTN"
-                        android:layout_width="170dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="70dp"
+                        android:background="#C56F59"
+                        android:textColor="@color/white"
                         android:text="เสร็จสิ้น"
-                        android:textSize="18dp" />
+                        android:textSize="20dp"
+                        android:layout_weight="1"/>
 
                     <Button
                         android:id="@+id/nextTreeBTN"
-                        android:layout_width="200dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="70dp"
+                        android:background="#a68c7c"
+                        android:textColor="@color/white"
                         android:text="ต้นต่อไป"
-                        android:textSize="18dp" />
+                        android:textSize="20dp"
+                        android:layout_weight="1"/>
                 </LinearLayout>
             </LinearLayout>
 

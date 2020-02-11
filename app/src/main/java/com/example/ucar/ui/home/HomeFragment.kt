@@ -2,6 +2,7 @@ package com.example.ucar.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,69 +13,112 @@ import com.example.ucar.R
 import com.example.ucar.SqliteConfig.SQLiteHelperTableClone
 import com.example.ucar.SqliteConfig.SQLiteHelperTablePlot
 import android.widget.ArrayAdapter
+import com.example.ucar.SqliteConfig.SQLiteHelperTableSpacing
 import com.example.ucar.ui.InputATree
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
 
 class HomeFragment : Fragment() {
-    private lateinit var createDataBTN : Button
-    internal lateinit var spinner : Spinner
+    private lateinit var createDataBTN: Button
+    private lateinit var cloneSpinner: Spinner
+    private lateinit var spacingSpinner: Spinner
+    private lateinit var plotOwnerRadioGroup: RadioGroup
+    private lateinit var treeTypeRadioGroup: RadioGroup
+    private lateinit var soilQualityRadioGroup: RadioGroup
+    private lateinit var sawdustTypeRadioGroup: RadioGroup
+    private val tmpPlot = Plot()
 
-
-    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+
         val dbHelperTablePlot = SQLiteHelperTablePlot(root.context)
         val dbHelperTableClone = SQLiteHelperTableClone(root.context)
+        val dbHelperTableSpacing = SQLiteHelperTableSpacing(root.context)
 
         createDataBTN = root.findViewById(R.id.createDataBTN) as Button
-        spinner = root.findViewById(R.id.cloneSpinner) as Spinner
+        cloneSpinner = root.findViewById(R.id.cloneSpinner) as Spinner
+        spacingSpinner = root.findViewById(R.id.spacingSpinner) as Spinner
+        plotOwnerRadioGroup = root.findViewById(R.id.plotOwnerRadioGroup) as RadioGroup
+        treeTypeRadioGroup = root.findViewById(R.id.treeTypeRadioGroup) as RadioGroup
+        soilQualityRadioGroup = root.findViewById(R.id.soilQualityRadioGroup) as RadioGroup
+        sawdustTypeRadioGroup = root.findViewById(R.id.sawdustTypeRadioGroup) as RadioGroup
+        cloneSpinner = root.findViewById(R.id.cloneSpinner) as Spinner
 
-        val option : ArrayList<String> = ArrayList()
-        option.addAll(dbHelperTableClone.getAllClone())
-        val adapter =  ArrayAdapter(root.context, android.R.layout.simple_list_item_1, option)
-        spinner.adapter = adapter
+        // set data in to both of spinner
+        val cloneOption: ArrayList<String> = ArrayList()
+        val spacingOption: ArrayList<String> = ArrayList()
+        cloneOption.addAll(dbHelperTableClone.getAllClone())
+        spacingOption.addAll(dbHelperTableSpacing.getAllSpacing())
 
-        createDataBTN.setOnClickListener {
-            val plotID = plotIDTextInput.text.toString()
-            val plotName = plotNameTextInput.text.toString()
-            val ageYear = plotYearTextInput.text.toString()
-            val ageMonth = plotMonthTextInput.text.toString()
-            val latitude = latitudeTextInput.text.toString()
-            var longitude = longitudeTextInput.text.toString()
-            var serviveRate = surviveRateTextInput.text.toString()
-            var sampleTree = sampleTreeTextInput.text.toString()
-
-            if(plotID == "" || plotName == "" || ageYear == "" || ageMonth == "" || latitude == "" || longitude == "" || serviveRate == "" || sampleTree == "" ){
-                Toast.makeText(context, "กรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_LONG).show()
+        cloneSpinner.adapter = ArrayAdapter(root.context, android.R.layout.simple_list_item_1, cloneOption)
+        cloneSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                tmpPlot.clone = parent?.getItemAtPosition(position).toString()
             }
-            else {
-                val plot = Plot(
-                    plotID,
-                    plotName,
-                    ageYear.toInt(),
-                    ageMonth.toInt(),
-                    latitude.toFloat(),
-                    longitude.toFloat(),
-                    serviveRate.toFloat(),
-                    sampleTree.toInt()
-                )
-                dbHelperTablePlot.insertData(plot)
-                startActivity(Intent(root.context, InputATree::class.java))
-            }
-
-            val dbHelperTableClone =
-                SQLiteHelperTableClone(root.context)
-//            dbHelperTableClone.insertData(1, "G2")
-//            dbHelperTableClone.insertData(2, "K58")
-//            dbHelperTableClone.insertData(3, "K62")
-//            dbHelperTableClone.insertData(4, "K7")
-//            dbHelperTableClone.insertData(5, "K73")
-//            dbHelperTableClone.insertData(6, "test")
-
-//            Toast.makeText(context, dbHelperTableClone.getAllClone(), Toast.LENGTH_LONG).show()
-
         }
 
+        spacingSpinner.adapter = ArrayAdapter(root.context, android.R.layout.simple_list_item_1, spacingOption)
+        spacingSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                tmpPlot.spacing = parent?.getItemAtPosition(position).toString()
+            }
+        }
+
+        createDataBTN.setOnClickListener {
+            tmpPlot.plotID = plotIDTextInput.text.toString()
+            tmpPlot.ownerShip = (root.findViewById<RadioButton>(plotOwnerRadioGroup.checkedRadioButtonId)).text.toString()
+            tmpPlot.plotName = plotNameTextInput.text.toString()
+            tmpPlot.plantType = (root.findViewById<RadioButton>(treeTypeRadioGroup.checkedRadioButtonId)).text.toString()
+            tmpPlot.ageYear = plotYearTextInput.text.toString().toInt()
+            tmpPlot.ageMonth = plotMonthTextInput.text.toString().toInt()
+            tmpPlot.latitude = latitudeTextInput.text.toString().toFloat()
+            tmpPlot.longitude = longitudeTextInput.text.toString().toFloat()
+            tmpPlot.survivalRate = surviveRateTextInput.text.toString().toFloat()
+            tmpPlot.sampleTree = sampleTreeTextInput.text.toString().toInt()
+            tmpPlot.soilQuality = (root.findViewById<RadioButton>(soilQualityRadioGroup.checkedRadioButtonId)).text.toString()
+            tmpPlot.sawType = (root.findViewById<RadioButton>(sawdustTypeRadioGroup.checkedRadioButtonId)).text.toString()
+
+
+ 1
+            if (tmpPlot.plotID == "" || tmpPlot.ownerShip == null || tmpPlot.plotName == "" || tmpPlot.plantType == "" ||
+                tmpPlot.ageYear == null || tmpPlot.ageMonth == null || tmpPlot.latitude == null || tmpPlot.longitude == null ||
+                tmpPlot.survivalRate == null || tmpPlot.sampleTree == null || tmpPlot.soilQuality == "" || tmpPlot.sawType == ""
+            ) {
+                if(tmpPlot.ageMonth!! > 12) Toast.makeText(context, "อายุแปลง ( เดือน ) ไม่ถูกต้อง", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "กรอกตรวจสอบข้อมูลอีกครั้ง", Toast.LENGTH_LONG).show()
+            }
+            else {
+                dbHelperTablePlot.insertData(tmpPlot)
+                val intent = Intent(root.context, InputATree::class.java)
+                intent.putExtra("plotId", tmpPlot.plotID)
+                intent.putExtra("count", "1")
+                intent.putExtra("plotName", tmpPlot.plotName)
+                startActivity(intent)
+            }
+        }
+
+//        insert data in the first time
+
+//        dbHelperTableClone.insertData(1, "G2")
+//        dbHelperTableClone.insertData(2, "K58")
+//        dbHelperTableClone.insertData(3, "K62")
+//        dbHelperTableClone.insertData(4, "K7")
+//        dbHelperTableClone.insertData(5, "K73")
+//        dbHelperTableClone.insertData(6, "test")
+//        dbHelperTableSpacing.insertData(1,"1.8x3.0")
+//        dbHelperTableSpacing.insertData(2,"1.5x2.5")
+//        dbHelperTableSpacing.insertData(3,"1.4x3.0")
+//        dbHelperTableSpacing.insertData(4,"2.0x2.0")
+//        dbHelperTableSpacing.insertData(5,"1.9x3.0")
+//        dbHelperTableSpacing.insertData(6,"2.0X3.0")
+//        dbHelperTableSpacing.insertData(7,"2.0X2.8")
+//        dbHelperTableSpacing.insertData(8,"1.0x3.0")
         return root
     }
 }
