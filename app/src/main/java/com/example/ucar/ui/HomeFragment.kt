@@ -1,8 +1,7 @@
-package com.example.ucar.ui.home
+package com.example.ucar.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.example.ucar.SqliteConfig.SQLiteHelperTableClone
 import com.example.ucar.SqliteConfig.SQLiteHelperTablePlot
 import android.widget.ArrayAdapter
 import com.example.ucar.SqliteConfig.SQLiteHelperTableSpacing
-import com.example.ucar.ui.InputATree
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
 
@@ -104,7 +102,7 @@ class HomeFragment : Fragment() {
         }
 
 //        insert data in the first time
-
+//
 //        dbHelperTableClone.insertData(1, "G2")
 //        dbHelperTableClone.insertData(2, "K58")
 //        dbHelperTableClone.insertData(3, "K62")

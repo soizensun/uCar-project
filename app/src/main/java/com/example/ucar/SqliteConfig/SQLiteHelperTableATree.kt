@@ -90,17 +90,17 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         return success
     }
 
-    fun searchTree(plotID : String) : ArrayList<ATree> {
+    fun searchTree(plotID: String): ArrayList<ATree> {
         val db = readableDatabase
         val searchATreeSQL = "SELECT * FROM $TABLE_NAME where $PLOT_ID = \"$plotID\""
 
         val cursor = db.rawQuery(searchATreeSQL, null)
 
-        val aTreeArray : ArrayList<ATree> = ArrayList()
+        val aTreeArray: ArrayList<ATree> = ArrayList()
 
-        if(cursor != null){
-            if(cursor.moveToFirst()){
-                do{
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
                     val plotId = cursor.getString(cursor.getColumnIndex(PLOT_ID))
                     val orderTree = cursor.getInt(cursor.getColumnIndex(ORDER_TREE))
                     val grith = cursor.getFloat(cursor.getColumnIndex(GRITH))
@@ -134,6 +134,48 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         cursor.close()
         db.close()
         return aTreeArray
+    }
+
+    fun updateData(
+        plotID: String,
+        orderTree : String,
+        dbh: String,
+        grith: String,
+        totalLenght: String,
+        merchLength: String,
+        sawdustWeight: String,
+        hbhN: String,
+        hbhS: String,
+        hbhE: String,
+        hbhW: String
+    )  : Boolean {
+//        var updateSQL =
+//            "UPDATE $TABLE_NAME SET " +
+//                    "$DBH = \"$dbh\", " +
+//                    "$GRITH = \"$grith\", " +
+//                    "$TOTAL_LENGHT = \"$totalLenght\", " +
+//                    "$MERCH_LENGHT = \"$merchLength\", " +
+//                    "$SAW_DUST_WEIGHT = \"$sawdustWeight\", " +
+//                    "$HBH_N = \"$hbhN\", " +
+//                    "$HBH_S = \"$hbhS\", " +
+//                    "$HBH_E = \"$hbhE\", " +
+//                    "$HBH_W = \"$hbhW\",  " +
+//                    "WHERE $PLOT_ID = \"$plotID\" and $ORDER_TREE = $orderTree;"
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(DBH, dbh)
+        contentValues.put(GRITH, grith)
+        contentValues.put(TOTAL_LENGHT, totalLenght)
+        contentValues.put(MERCH_LENGHT, merchLength)
+        contentValues.put(SAW_DUST_WEIGHT, sawdustWeight)
+        contentValues.put(HBH_N, hbhN)
+        contentValues.put(HBH_S, hbhS)
+        contentValues.put(HBH_E, hbhE)
+        contentValues.put(HBH_W, hbhW)
+
+        var arrayString = arrayOf<String>(plotID, orderTree)
+        db.update(TABLE_NAME, contentValues, "$PLOT_ID = ?  AND $ORDER_TREE = ?", arrayString)
+        return true
     }
 
 

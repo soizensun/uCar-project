@@ -26,7 +26,7 @@
                 android:background="@color/colorPrimary"
                 android:layout_marginBottom="20dp">
                 <TextView
-                    android:id="@+id/countTV"
+                    android:id="@+id/countTVEdit"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -65,7 +65,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/DBHTextInput"
+                        android:id="@+id/DBHTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="17dp"
-                    android:text="Grith"
+                    android:text="Girth"
                     android:textSize="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +99,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/GrithTextInput"
+                        android:id="@+id/GrithTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -133,7 +133,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/treeHeightTextInput"
+                        android:id="@+id/treeHeightTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -167,7 +167,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/activeTreeHeightTextInput"
+                        android:id="@+id/activeTreeHeightTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -201,7 +201,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/sawdustTextInput"
+                        android:id="@+id/sawdustTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -252,7 +252,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/hardNorthTextInput"
+                        android:id="@+id/hardNorthTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -285,7 +285,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/hardSouthTextInput"
+                        android:id="@+id/hardSouthTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -319,7 +319,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/hardEastTextInput"
+                        android:id="@+id/hardEastTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -353,7 +353,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/hardWestTextInput"
+                        android:id="@+id/hardWestTextInputEdit"
                         android:layout_width="match_parent"
                         android:layout_height="52dp"
                         android:inputType="numberDecimal|numberSigned">
@@ -389,25 +389,16 @@
                     android:baselineAligned="false">
 
                     <Button
-                        android:id="@+id/confirmDataBTN"
+                        android:id="@+id/saveBTN"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
-                        android:background="#9E9D24"
+                        android:background="#C56F59"
                         android:textColor="@color/white"
-                        android:text="เสร็จสิ้น"
+                        android:text="บันทึก"
                         android:textSize="20dp"
                         android:layout_weight="1"/>
 
-                    <Button
-                        android:id="@+id/nextTreeBTN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:background="#827717"
-                        android:textColor="@color/white"
-                        android:text="ต้นต่อไป"
-                        android:textSize="20dp"
-                        android:layout_weight="1"
-                        android:paddingRight="20dp"/>
+
                 </LinearLayout>
             </LinearLayout>
 

@@ -1,4 +1,4 @@
-package com.example.ucar.ui.unSentList
+package com.example.ucar.ui
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -15,6 +15,7 @@ import com.example.ucar.Adapter.PlotAdapter
 import com.example.ucar.R
 import com.example.ucar.SqliteConfig.SQLiteHelperTablePlot
 import com.example.ucar.model.Plot
+import kotlinx.android.synthetic.main.fragment_gallery.*
 import java.util.ArrayList
 
 class LogFragment : Fragment() {
@@ -27,13 +28,11 @@ class LogFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
-        var plots = ArrayList<Plot>()
         val dbHelperTablePlot = SQLiteHelperTablePlot(root.context)
 
         val recyclerView =  root.findViewById(R.id.recyclerviewLog) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(root.context, LinearLayout.VERTICAL, false)
         recyclerView.adapter = PlotAdapter(dbHelperTablePlot.getAllPlot())
-
 
         return root
     }
