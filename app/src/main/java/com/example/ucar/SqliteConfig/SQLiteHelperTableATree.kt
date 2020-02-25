@@ -80,7 +80,7 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         values.put(HBH_S, atree.hbhsouth)
         values.put(HBH_E, atree.hbhEast)
         values.put(HBH_W, atree.hbhWest)
-        values.put("created_at", "mockDateNow()")
+        values.put("created_at", "time('now')")
 
 
         var success = db.insert(TABLE_NAME, null, values)
@@ -90,9 +90,9 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         return success
     }
 
-    fun searchTree(plotID: String): ArrayList<ATree> {
+    fun searchTree(id: Int): ArrayList<ATree> {
         val db = readableDatabase
-        val searchATreeSQL = "SELECT * FROM $TABLE_NAME where $PLOT_ID = \"$plotID\""
+        val searchATreeSQL = "SELECT * FROM $TABLE_NAME where $PLOT_ID = $id"
 
         val cursor = db.rawQuery(searchATreeSQL, null)
 
@@ -112,6 +112,7 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
                     val hbhS = cursor.getFloat(cursor.getColumnIndex(HBH_S))
                     val hbhE = cursor.getFloat(cursor.getColumnIndex(HBH_E))
                     val hbhW = cursor.getFloat(cursor.getColumnIndex(HBH_W))
+                    val deleteAt = cursor.getString(cursor.getColumnIndex("deleted_at"))
 
                     aTreeArray.add(
                         ATree(
@@ -125,7 +126,8 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
                             hbhN,
                             hbhS,
                             hbhE,
-                            hbhW
+                            hbhW,
+                            deleteAt
                         )
                     )
                 } while (cursor.moveToNext())
@@ -140,31 +142,21 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         plotID: String,
         orderTree : String,
         dbh: String,
-        grith: String,
+        girth: String,
         totalLenght: String,
         merchLength: String,
         sawdustWeight: String,
         hbhN: String,
         hbhS: String,
         hbhE: String,
-        hbhW: String
+        hbhW: String,
+        deleted_at: String
     )  : Boolean {
-//        var updateSQL =
-//            "UPDATE $TABLE_NAME SET " +
-//                    "$DBH = \"$dbh\", " +
-//                    "$GRITH = \"$grith\", " +
-//                    "$TOTAL_LENGHT = \"$totalLenght\", " +
-//                    "$MERCH_LENGHT = \"$merchLength\", " +
-//                    "$SAW_DUST_WEIGHT = \"$sawdustWeight\", " +
-//                    "$HBH_N = \"$hbhN\", " +
-//                    "$HBH_S = \"$hbhS\", " +
-//                    "$HBH_E = \"$hbhE\", " +
-//                    "$HBH_W = \"$hbhW\",  " +
-//                    "WHERE $PLOT_ID = \"$plotID\" and $ORDER_TREE = $orderTree;"
+
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(DBH, dbh)
-        contentValues.put(GRITH, grith)
+        contentValues.put(GRITH, girth)
         contentValues.put(TOTAL_LENGHT, totalLenght)
         contentValues.put(MERCH_LENGHT, merchLength)
         contentValues.put(SAW_DUST_WEIGHT, sawdustWeight)
@@ -172,10 +164,18 @@ class SQLiteHelperTableATree : SQLiteOpenHelper {
         contentValues.put(HBH_S, hbhS)
         contentValues.put(HBH_E, hbhE)
         contentValues.put(HBH_W, hbhW)
+        if(deleted_at != ""){
+            contentValues.put("deleted_at", deleted_at)
+        }
 
-        var arrayString = arrayOf<String>(plotID, orderTree)
+        var arrayString = arrayOf(SQLiteHelperTablePlot(context).searchID(plotID).toString(), orderTree)
         db.update(TABLE_NAME, contentValues, "$PLOT_ID = ?  AND $ORDER_TREE = ?", arrayString)
         return true
+    }
+
+    fun deleteRecord(id: Int?) {
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME WHERE $PLOT_ID = \"$id\"")
     }
 
 

@@ -12,6 +12,7 @@ class ATree {
     var hbhsouth: Float? = null
     var hbhEast: Float? = null
     var hbhWest: Float? = null
+    var deleteAt: String? = null
 
     constructor()
     constructor(
@@ -25,7 +26,8 @@ class ATree {
         hbhNorth: Float?,
         hbhsouth: Float?,
         hbhEast: Float?,
-        hbhWest: Float?
+        hbhWest: Float?,
+        deleteAt: String?
     ) {
         this.plotID = plotID
         this.orderTree = orderTree
@@ -38,6 +40,7 @@ class ATree {
         this.hbhsouth = hbhsouth
         this.hbhEast = hbhEast
         this.hbhWest = hbhWest
+        this.deleteAt = deleteAt
     }
 
     override fun toString(): String {

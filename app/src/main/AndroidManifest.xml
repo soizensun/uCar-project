@@ -3,6 +3,8 @@
     package="com.example.ucar">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.EditTree"></activity>
+        <activity android:name=".ui.EditPlot"></activity>
+        <activity android:name=".ui.EditTree" />
         <activity
             android:name=".ui.TreeList"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.InputATree"
             android:parentActivityName="" />

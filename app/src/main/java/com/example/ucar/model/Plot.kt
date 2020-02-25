@@ -1,7 +1,7 @@
 package com.example.ucar.model
 
 class Plot {
-//    var id : Int? = null
+    var id : Int? = null
     var plotID : String? = null
     var ownerShip : String? = null
     var plotName : String? = null
@@ -48,9 +48,43 @@ class Plot {
         this.sampleTree = sampleTree
         this.soilQuality = soilQuality
         this.sawType = sawType
+    }
+    constructor(
+        id: Int?,
+        plotID: String?,
+        ownerShip: String?,
+        plotName: String?,
+        clone: String?,
+        plantType : String?,
+        ageYear: Int?,
+        ageMonth: Int?,
+        spacing : String?,
+        latitude: Float?,
+        longitude: Float?,
+        survivalRate: Float?,
+        sampleTree: Int?,
+        soilQuality : String?,
+        sawType : String?
+    ) {
+        this.id = id
+        this.plotID = plotID
+        this.ownerShip = ownerShip
+        this.plotName = plotName
+        this.clone = clone
+        this.plantType = plantType
+        this.ageYear = ageYear
+        this.ageMonth = ageMonth
+        this.spacing = spacing
+        this.latitude = latitude
+        this.longitude = longitude
+        this.survivalRate = survivalRate
+        this.sampleTree = sampleTree
+        this.soilQuality = soilQuality
+        this.sawType = sawType
 
     }
 
-
-
+    override fun toString(): String {
+        return "$plotName, $plotID"
+    }
 }

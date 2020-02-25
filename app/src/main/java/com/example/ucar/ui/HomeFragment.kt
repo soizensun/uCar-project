@@ -1,6 +1,15 @@
 package com.example.ucar.ui
 
+import android.Manifest
+import android.R.*
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Context.LOCATION_SERVICE
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +21,11 @@ import com.example.ucar.R
 import com.example.ucar.SqliteConfig.SQLiteHelperTableClone
 import com.example.ucar.SqliteConfig.SQLiteHelperTablePlot
 import android.widget.ArrayAdapter
+import androidx.core.app.ActivityCompat
 import com.example.ucar.SqliteConfig.SQLiteHelperTableSpacing
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.ArrayList
+import androidx.core.content.ContextCompat.getSystemService as getSystemService1
 
 class HomeFragment : Fragment() {
     private lateinit var createDataBTN: Button
@@ -25,14 +36,19 @@ class HomeFragment : Fragment() {
     private lateinit var soilQualityRadioGroup: RadioGroup
     private lateinit var sawdustTypeRadioGroup: RadioGroup
     private val tmpPlot = Plot()
+//    private var hasGps = false
+//    private var hasNetwork = false
+//    private var locationManager : LocationManager? = null
+//    private var longitude : Double = 0.0
+//    private var latitude : Double = 0.0
 
+    @SuppressLint("MissingPermission")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-
         val dbHelperTablePlot = SQLiteHelperTablePlot(root.context)
         val dbHelperTableClone = SQLiteHelperTableClone(root.context)
         val dbHelperTableSpacing = SQLiteHelperTableSpacing(root.context)
@@ -46,13 +62,16 @@ class HomeFragment : Fragment() {
         sawdustTypeRadioGroup = root.findViewById(R.id.sawdustTypeRadioGroup) as RadioGroup
         cloneSpinner = root.findViewById(R.id.cloneSpinner) as Spinner
 
+        // set auto latitude longitude
+
+
         // set data in to both of spinner
         val cloneOption: ArrayList<String> = ArrayList()
         val spacingOption: ArrayList<String> = ArrayList()
         cloneOption.addAll(dbHelperTableClone.getAllClone())
         spacingOption.addAll(dbHelperTableSpacing.getAllSpacing())
 
-        cloneSpinner.adapter = ArrayAdapter(root.context, android.R.layout.simple_list_item_1, cloneOption)
+        cloneSpinner.adapter = ArrayAdapter(root.context, layout.simple_list_item_1, cloneOption)
         cloneSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -60,7 +79,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        spacingSpinner.adapter = ArrayAdapter(root.context, android.R.layout.simple_list_item_1, spacingOption)
+        spacingSpinner.adapter = ArrayAdapter(root.context, layout.simple_list_item_1, spacingOption)
         spacingSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -83,7 +102,6 @@ class HomeFragment : Fragment() {
             tmpPlot.sawType = (root.findViewById<RadioButton>(sawdustTypeRadioGroup.checkedRadioButtonId)).text.toString()
 
 
- 1
             if (tmpPlot.plotID == "" || tmpPlot.ownerShip == null || tmpPlot.plotName == "" || tmpPlot.plantType == "" ||
                 tmpPlot.ageYear == null || tmpPlot.ageMonth == null || tmpPlot.latitude == null || tmpPlot.longitude == null ||
                 tmpPlot.survivalRate == null || tmpPlot.sampleTree == null || tmpPlot.soilQuality == "" || tmpPlot.sawType == ""

@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="#f2f2f2">
+        android:background="@color/card">
 
         <LinearLayout
             android:id="@+id/menuCard"
@@ -21,13 +21,13 @@
             android:orientation="horizontal"
             >
 
-            <ImageButton
-                android:id="@+id/uploadBTN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/ic_file_upload_black_24dp" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/uploadBTN"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:src="@drawable/ic_file_upload_black_24dp" />-->
 
             <TextView
                 android:id="@+id/idTV"
@@ -39,15 +39,43 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"/>
 
+
             <TextView
                 android:id="@+id/nameTV"
-                android:layout_width="match_parent"
+                android:layout_width="198dp"
                 android:layout_height="26dp"
                 android:layout_gravity="center"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="0dp"
                 android:gravity="right"
                 android:text="หนองกระพ้อ16"
-                android:layout_marginRight="15dp"
                 android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/uploadBTN"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/card"
+                    android:gravity="right"
+                    android:src="@drawable/ic_menu_black_24dp" />
+            </RelativeLayout>
 
 
         </LinearLayout>

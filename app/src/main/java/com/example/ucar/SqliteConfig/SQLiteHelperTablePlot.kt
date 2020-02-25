@@ -1,9 +1,11 @@
 package com.example.ucar.SqliteConfig
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 import com.example.ucar.model.Plot
 import kotlin.collections.ArrayList
@@ -92,11 +94,8 @@ class SQLiteHelperTablePlot : SQLiteOpenHelper {
         values.put(SOIL_QUALITY, plot.soilQuality)
         values.put(SAW_DUST, plot.sawType)
         values.put("created_at", "mockDateNow()")
-//        Log.i(
-//            "c",
-//            plot.plotID + plot.ownerShip + plot.plotName + plot.clone + plot.plantType + plot.ageYear + plot.ageMonth + plot.spacing +
-//                    plot.latitude + plot.longitude + plot.survivalRate + plot.sampleTree + plot.soilQuality + plot.sawType
-//        )
+        values.put("deleted_at", "")
+
         Toast.makeText(context, "insert a plot", Toast.LENGTH_LONG).show()
         var success = db.insert(TABLE_NAME, null, values)
 //        Log.i("ttt", success.toString())
@@ -107,7 +106,7 @@ class SQLiteHelperTablePlot : SQLiteOpenHelper {
 
     fun getAllPlot(): ArrayList<Plot> {
         val db = readableDatabase
-        val selectALLSQL = "SELECT * FROM $TABLE_NAME"
+        val selectALLSQL = "SELECT * FROM $TABLE_NAME WHERE deleted_at == \"\""
 
         val cursor = db.rawQuery(selectALLSQL, null)
 
@@ -116,6 +115,7 @@ class SQLiteHelperTablePlot : SQLiteOpenHelper {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
+                    val id = cursor.getString(cursor.getColumnIndex(ID))
                     val plotID = cursor.getString(cursor.getColumnIndex(PLOT_ID))
                     val plotOwnership = cursor.getString(cursor.getColumnIndex(PLOT_OWNERSHIP))
                     val plotName = cursor.getString(cursor.getColumnIndex(PLOT_NAME))
@@ -133,6 +133,7 @@ class SQLiteHelperTablePlot : SQLiteOpenHelper {
 
                     plotArray.add(
                         Plot(
+                            id.toInt(),
                             plotID,
                             plotOwnership,
                             plotName,
@@ -156,4 +157,124 @@ class SQLiteHelperTablePlot : SQLiteOpenHelper {
         db.close()
         return plotArray
     }
+
+    @SuppressLint("Recycle")
+    fun searchByID(id: Int): Plot {
+        val db = readableDatabase
+        val selectALLSQL = "SELECT * FROM $TABLE_NAME WHERE $ID = \"$id\""
+        val cursor = db.rawQuery(selectALLSQL, null)
+        var plot = Plot()
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    var id = cursor.getString(cursor.getColumnIndex(ID))
+                    val plotID = cursor.getString(cursor.getColumnIndex(PLOT_ID))
+                    val plotOwnership = cursor.getString(cursor.getColumnIndex(PLOT_OWNERSHIP))
+                    val plotName = cursor.getString(cursor.getColumnIndex(PLOT_NAME))
+                    val cloneId = cursor.getString(cursor.getColumnIndex(CLONE_ID))
+                    val treeType = cursor.getString(cursor.getColumnIndex(TREE_TYPE))
+                    val ageYear = cursor.getInt(cursor.getColumnIndex(AGE_YEAR))
+                    val ageMonth = cursor.getInt(cursor.getColumnIndex(AGE_MONTH))
+                    val spacingId = cursor.getString(cursor.getColumnIndex(SPACING_ID))
+                    val latitude = cursor.getFloat(cursor.getColumnIndex(LATITUDE))
+                    val longitude = cursor.getFloat(cursor.getColumnIndex(LONGITUDE))
+                    val surviveRate = cursor.getFloat(cursor.getColumnIndex(SURVIVE_RATE))
+                    val sampleTree = cursor.getInt(cursor.getColumnIndex(SAMPLE_TREE))
+                    val soilQuality = cursor.getString(cursor.getColumnIndex(SOIL_QUALITY))
+                    val sawDust = cursor.getString(cursor.getColumnIndex(SAW_DUST))
+
+                    plot =
+                        Plot(
+                            id.toInt(),
+                            plotID,
+                            plotOwnership,
+                            plotName,
+                            cloneId,
+                            treeType,
+                            ageYear,
+                            ageMonth,
+                            spacingId,
+                            latitude,
+                            longitude,
+                            surviveRate,
+                            sampleTree,
+                            soilQuality,
+                            sawDust
+                        )
+
+                } while (cursor.moveToNext())
+            }
+        }
+
+        return plot
+    }
+
+    fun updatePlot(
+        id: Int?,
+        plotID: String?,
+        ownerShip: String?,
+        plotName: String?,
+        clone: String?,
+        plantType: String?,
+        ageYear: Int?,
+        ageMonth: Int?,
+        spacing: String?,
+        latitude: Float?,
+        longitude: Float?,
+        survivalRate: Float?,
+        sampleTree: Int?,
+        soilQuality: String?,
+        sawType: String?,
+        deleted_at: String?
+    ): Boolean{
+        Log.i("test2", plotID)
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(PLOT_ID, plotID)
+        contentValues.put(PLOT_OWNERSHIP, ownerShip)
+        contentValues.put(PLOT_NAME, plotName)
+        contentValues.put(CLONE_ID, clone)
+        contentValues.put(TREE_TYPE, plantType)
+        contentValues.put(AGE_YEAR, ageYear)
+        contentValues.put(AGE_MONTH, ageMonth)
+        contentValues.put(SPACING_ID, spacing)
+        contentValues.put(LATITUDE, latitude)
+        contentValues.put(LONGITUDE, longitude)
+        contentValues.put(SURVIVE_RATE, survivalRate)
+        contentValues.put(SAMPLE_TREE, sampleTree)
+        contentValues.put(SOIL_QUALITY, soilQuality)
+        contentValues.put(SAW_DUST, sawType)
+        if(deleted_at != ""){
+            contentValues.put("deleted_at", deleted_at)
+        }
+
+        val arrayString = arrayOf<String>(id.toString())
+        db.update(TABLE_NAME, contentValues, "$ID = ?", arrayString)
+        return true
+    }
+
+    fun searchID(plotID: String): Int {
+        val db = readableDatabase
+        val selectALLSQL = "SELECT _id FROM $TABLE_NAME WHERE $PLOT_ID = \"$plotID\""
+        val cursor = db.rawQuery(selectALLSQL, null)
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    val ID : String? = cursor.getString(cursor.getColumnIndex(ID))
+                    return ID!!.toInt()
+                } while (cursor.moveToNext())
+            }
+        }
+        return -1
+    }
+
+    fun deleteRecord(id: Int?) {
+        val db = this.writableDatabase
+        SQLiteHelperTableATree(context).deleteRecord(id)
+
+        db.execSQL("DELETE FROM $TABLE_NAME WHERE _id = \"$id\"")
+    }
+
+
 }

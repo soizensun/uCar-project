@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.ucar.MainActivity
 import com.example.ucar.R
 import com.example.ucar.SqliteConfig.SQLiteHelperTableATree
+import com.example.ucar.SqliteConfig.SQLiteHelperTablePlot
 import com.example.ucar.model.ATree
 import kotlinx.android.synthetic.main.activity_input_atree.*
 
@@ -19,6 +20,8 @@ class InputATree : AppCompatActivity() {
 
     private val tmpATree = ATree()
     private val sqLiteHelperTableATree = SQLiteHelperTableATree(this)
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +55,9 @@ class InputATree : AppCompatActivity() {
 
         confirmDataBTN.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            val realPlotID : Int= SQLiteHelperTablePlot(this).searchID(plotId)
 
-            tmpATree.plotID = plotId
+            tmpATree.plotID = realPlotID.toString()
             tmpATree.orderTree = count
             tmpATree.dbh = DBHTextInput.text.toString().toFloat()
             tmpATree.grith = GrithTextInput.text.toString().toFloat()
@@ -70,7 +74,9 @@ class InputATree : AppCompatActivity() {
         }
 
         nextTreeBTN.setOnClickListener {
-            tmpATree.plotID = plotId
+            val realPlotID : Int = SQLiteHelperTablePlot(this).searchID(plotId)
+
+            tmpATree.plotID = realPlotID.toString()
             tmpATree.orderTree = count
             tmpATree.dbh = DBHTextInput.text.toString().toFloat()
             tmpATree.grith = GrithTextInput.text.toString().toFloat()
